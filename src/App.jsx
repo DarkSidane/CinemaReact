@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 // Component to display individual movie cards
 const MovieCard = ({ movie }) => {
-  const imageUrl = `https://image.tmdb.org/t/p/w200${movie.poster_path}`; // w200 for smaller images
+  // Switching from 'w200' to 'w500' for a higher resolution image
+  const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   return (
     <a
@@ -12,7 +13,7 @@ const MovieCard = ({ movie }) => {
       rel="noopener noreferrer"
     >
       <img
-        className="w-full h-auto transform transition-transform duration-300 ease-in-out group-hover:scale-110"
+        className="w-full transform transition-transform duration-300 ease-in-out group-hover:scale-110"
         src={imageUrl}
         alt={movie.title}
       />
@@ -53,9 +54,9 @@ const App = () => {
           className="rounded-full border-2 border-gray-300 p-2 w-1/3 md:w-1/4 lg:w-1/5"
         />
       </header>
-      <main className="px-4 md:px-8 pb-4 md:pb-8 pt-2">
+      <main className="px-4 md:px-8 pt-2 pb-4 md:pb-8">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {movies.map(movie => (
+          {movies.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
