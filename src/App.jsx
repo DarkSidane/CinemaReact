@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 // Component to display individual movie cards
 const MovieCard = ({ movie }) => {
-  const imageUrl = `https://image.tmdb.org/t/p/w200${movie.poster_path}`; // Use w200 for smaller images
+  const imageUrl = `https://image.tmdb.org/t/p/w200${movie.poster_path}`; // w200 for smaller images
 
   return (
     <a
@@ -42,12 +42,19 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      <header className="bg-gray-800 p-4 md:p-8 text-white text-3xl font-bold text-center">
-        🎬🍿 Movie library
+    <div className="App bg-gray-200 min-h-screen">
+      <header className="flex justify-between items-center px-4 md:px-8 pt-4 md:pt-8">
+        <h1 className="text-3xl font-bold text-black">
+          🎬🍿 Movie library
+        </h1>
+        <input
+          type="text"
+          placeholder="🔎 Search for movie"
+          className="rounded-full border-2 border-gray-300 p-2 w-1/3 md:w-1/4 lg:w-1/5"
+        />
       </header>
-      <main className="p-4 md:p-8">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-10">
+      <main className="px-4 md:px-8 pb-4 md:pb-8 pt-2">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {movies.map(movie => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
