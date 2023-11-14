@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 
 // Component to display individual movie cards
 const MovieCard = ({ movie }) => {
-  // Switching from 'w200' to 'w500' for a higher resolution image
   const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   return (
     <a
       href={`https://yourdomain.com/movie-list-vite/movie/${movie.id}`}
-      className="group block rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out"
+      className="group block rounded-lg overflow-hidden shadow-lg bg-white transition-transform duration-300 ease-in-out hover:scale-105"
       target="_blank"
       rel="noopener noreferrer"
     >
       <img
-        className="w-full transform transition-transform duration-300 ease-in-out group-hover:scale-110"
+        className="w-full h-auto"
         src={imageUrl}
         alt={movie.title}
       />
@@ -45,7 +44,7 @@ const App = () => {
   return (
     <div className="App bg-gray-200 min-h-screen">
       <header className="flex justify-between items-center px-4 md:px-8 pt-4 md:pt-8">
-        <h1 className="text-3xl font-bold text-black">
+        <h1 className="text-4xl"> {/* Increased title size and removed font-bold */}
           🎬🍿 Movie library
         </h1>
         <input
@@ -66,3 +65,4 @@ const App = () => {
 };
 
 export default App;
+
