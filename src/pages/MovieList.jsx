@@ -23,7 +23,11 @@ const MovieList = () => {
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-4xl mb-8">🎬🍿 Movie Library</h1>
+	  <h1 className="text-4xl">🎬🍿 Movie Library</h1>
+ <input
+          type="text"
+          placeholder="🔎 Search for movie"
+          className="rounded-full border-2 border-gray-300 p-2 w-1/3 md:w-1/4 lg:w-1/5" />
       <MovieGrid movies={movies} /> {/* This line uses the MovieGrid component */}
     </div>
   );

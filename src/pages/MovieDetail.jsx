@@ -37,7 +37,7 @@ const MovieDetail = () => {
           ← Back
         </Link>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {posterUrl && <img className="max-w-full h-auto rounded-lg" src={posterUrl} alt={movie.title} />}
+          {posterUrl && <img className="max-w-sm h-auto rounded-lg" src={posterUrl} alt={movie.title} />}
           <div className="text-container" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', borderRadius: '20px', padding: '20px' }}>
             <h1 className="text-4xl text-white">{movie.title}</h1>
             <p className="text-white">{movie.overview}</p>
