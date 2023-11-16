@@ -24,22 +24,23 @@ const MovieDetail = () => {
   }, [movieId]);
 
   if (!movie) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
   }
 
   const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}` : '';
   const backUrl = movie.backdrop_path ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}` : '';
+
   return (
-    <div> 
-      <div style={{position: 'relative', padding: '1rem'}}>
-        <Link to="/" className="inline-block p-4 bg-gray-300 rounded-full">
+    <div className={`bg-cover bg-center`} style={{ backgroundImage: `url(${backUrl})` }}>
+      <div className="relative p-4">
+        <Link to="/" className="inline-block px-4 py-2 bg-gray-300 rounded-full">
           ← Back
         </Link>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {posterUrl && <img className="max-w-sm h-auto rounded-lg" src={posterUrl} alt={movie.title} />}
-          <div className="text-container" style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', borderRadius: '20px', padding: '20px' }}>
-            <h1 className="text-4xl text-white">{movie.title}</h1>
-            <p className="text-white">{movie.overview}</p>
+          {posterUrl && <img className="max-w-sm h-auto rounded-lg shadow-lg" src={posterUrl} alt={movie.title} />}
+          <div className="bg-black bg-opacity-70 rounded-2xl p-5 text-white">
+            <h1 className="text-4xl">{movie.title}</h1>
+            <p>{movie.overview}</p>
             {movie.genres && (
               <p className="italic text-gray-400">
                 {movie.genres.map(genre => genre.name).join(', ')}
@@ -48,7 +49,6 @@ const MovieDetail = () => {
             <p className="text-gray-300">{new Date(movie.release_date).toLocaleDateString()}</p>
           </div>
         </div>
-        {/* Credits and additional high-resolution images not included */}
       </div>
     </div>
   );
