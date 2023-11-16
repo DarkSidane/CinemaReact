@@ -29,9 +29,8 @@ const MovieDetail = () => {
 
   const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/original${movie.poster_path}` : '';
   const backUrl = movie.backdrop_path ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}` : '';
-
   return (
-    <div style={{ backgroundImage: `url(${backUrl})`, backgroundSize: 'cover', backgroundPosition: 'center center' }}>
+    <div> 
       <div style={{position: 'relative', padding: '1rem'}}>
         <Link to="/" className="inline-block p-4 bg-gray-300 rounded-full">
           ← Back
