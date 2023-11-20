@@ -46,7 +46,7 @@ const MovieDetail = () => {
         <Link to="/" className="inline-block px-4 py-2 rounded-full text-left text-white mb-4">
           ← Back
         </Link>
-        <div className="flex flex-col md:flex-row md:items-end">
+        <div className="flex flex-col md:flex-row md:items-end mb-10">
           {posterUrl && <img className="rounded-lg shadow-lg object-cover mb-4 md:mb-0" src={posterUrl} alt={movie.title} width="300" />}
           <div className="text-white p-4 rounded-lg text-left">
             <h1 className="text-4xl">{movie.title}</h1>
@@ -59,6 +59,7 @@ const MovieDetail = () => {
             <p className="text-gray-300">{new Date(movie.release_date).toLocaleDateString()}</p>
           </div>
         </div>
+          <h1 className="text-4xl text-white">Credits</h1>
         <div className="w-full overflow-x-auto whitespace-nowrap">
           {credits.cast.map((member) => (
             <div className="inline-block p-2" key={member.id}>
