@@ -38,8 +38,8 @@ const MovieDetail = () => {
           ← Back
         </Link>
         <div className="flex flex-col md:flex-row md:items-end">
-          {posterUrl && <img className="max-w-sm md:max-w-md h-auto rounded-lg shadow-lg object-cover mb-4 md:mb-0" src={posterUrl} alt={movie.title} />}
-          <div className="text-white p-4 rounded-lg">
+          {posterUrl && <img className="max-w-sm md:max-w-md h-auto rounded-lg shadow-lg object-cover mb-4 md:mb-0" src={posterUrl} alt={movie.title} width="300" />}
+          <div className="text-white p-4 rounded-lg text-left">
             <h1 className="text-4xl">{movie.title}</h1>
             <p>{movie.overview}</p>
             {movie.genres && (
