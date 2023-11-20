@@ -39,16 +39,14 @@ const MovieDetail = () => {
         </Link>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {posterUrl && <img className="max-w-sm h-auto rounded-lg shadow-lg" src={posterUrl} alt={movie.title} />}
-          <div className="bg-black bg-opacity-70 rounded-2xl p-5 text-white">
-            <h1 className="text-4xl">{movie.title}</h1>
-            <p>{movie.overview}</p>
+            <h1 className="text-4xl text-white">{movie.title}</h1>
+            <p className="text-white">{movie.overview}</p>
             {movie.genres && (
-              <p className="italic text-gray-400">
+              <p className="italic text-gray-400 text-white ">
                 {movie.genres.map(genre => genre.name).join(', ')}
               </p>
             )}
             <p className="text-gray-300">{new Date(movie.release_date).toLocaleDateString()}</p>
-          </div>
         </div>
       </div>
     </div>
