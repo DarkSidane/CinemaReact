@@ -32,8 +32,8 @@ const MovieDetail = () => {
 
   return (
     <div className={`bg-cover bg-center`} style={{ backgroundImage: `url(${backUrl})` }}>
-      <div className="relative p-4">
-        <Link to="/" className="inline-block px-4 py-2 bg-gray-300 rounded-full">
+      <div className="relative p-4 flex flex-col items-start">
+         <Link to="/" className="inline-block px-4 py-2 rounded-full text-left">
           ← Back
         </Link>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
