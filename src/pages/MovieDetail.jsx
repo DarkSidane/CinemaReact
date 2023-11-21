@@ -1,74 +1,93 @@
+// Importation des hooks et des composants depuis React et React Router.
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
+// Composant fonctionnel MovieDetail pour afficher les détails d'un film spécifique.
 const MovieDetail = () => {
+	// Récupération de l'ID du film à partir de l'URL.
 	const { movieId } = useParams();
+
+	// Déclaration des états pour le film, les crédits et les images.
 	const [movie, setMovie] = useState(null);
 	const [credits, setCredits] = useState(null);
 	const [images, setImages] = useState(null);
 
+	// Hook useEffect pour charger les données du film après le montage du composant.
 	useEffect(() => {
+		// Fonction asynchrone pour récupérer les détails du film, les crédits et les images.
 		const fetchMovieDetail = async () => {
 			try {
+				// Requête pour les informations du film avec l'ID et la langue française.
 				const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=fr-FR`, {
 					headers: {
 						'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTY3OTRlMDU1ZjRiMDA0OWVkYjAwNzYwNmU3YTJiMCIsInN1YiI6IjY1NGE1MDM3MWFjMjkyN2IyZjI3MjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zh5RQtn5g1oHuAfOyZmiNqBgPdAp5MWxY3jYPoJdjqM'
 					}
 				});
 				const movieData = await movieResponse.json();
-				setMovie(movieData);
+				setMovie(movieData); // Mise à jour de l'état du film.
 
+				// Requête pour les crédits du film.
 				const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
 					headers: {
 						'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTY3OTRlMDU1ZjRiMDA0OWVkYjAwNzYwNmU3YTJiMCIsInN1YiI6IjY1NGE1MDM3MWFjMjkyN2IyZjI3MjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zh5RQtn5g1oHuAfOyZmiNqBgPdAp5MWxY3jYPoJdjqM'
 					}
 				});
 				const creditsData = await creditsResponse.json();
-				setCredits(creditsData);
+				setCredits(creditsData); // Mise à jour de l'état des crédits.
 
+				// Requête pour les images du film.
 				const imagesResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, {
 					headers: {
 						'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTY3OTRlMDU1ZjRiMDA0OWVkYjAwNzYwNmU3YTJiMCIsInN1YiI6IjY1NGE1MDM3MWFjMjkyN2IyZjI3MjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zh5RQtn5g1oHuAfOyZmiNqBgPdAp5MWxY3jYPoJdjqM'
 					}
 				});
 				const imagesData = await imagesResponse.json();
-				setImages(imagesData);
+				setImages(imagesData); // Mise à jour de l'état des images.
 			} catch (error) {
+				// Affichage de l'erreur dans la console si la requête échoue.
 				console.error('Erreur lors de la requête : ', error);
 			}
 		};
 
-		fetchMovieDetail();
-	}, [movieId]);
+		fetchMovieDetail(); // Appel de la fonction de récupération des détails.
+	}, [movieId]); // Le useEffect dépend de l'ID du film.
 
+	// Affichage d'un message de chargement si les données ne sont pas chargées.
 	if (!movie || !credits) {
-		return <div className="flex justify-center items-center h-screen">Loading...</div>;
+		return <div className="flex justify-center items-center h-screen">Chargement...</div>;
 	}
 
+	// Construction des URLs pour l'affiche et l'arrière-plan du film.
 	const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : '';
 	const backUrl = movie.backdrop_path ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}` : '';
 
+	// Rendu du composant avec les détails du film, les crédits et les images.
 	return (
 	<div className={`min-h-screen bg-no-repeat bg-cover bg-center`} style={{ backgroundImage: `url(${backUrl})`, backgroundAttachment: 'fixed' }}>
 		<div className="absolute top-0 right-0 bottom-0 left-0 bg-black/30 backdrop-blur-xl"></div>
 		<div className="relative p-4 flex flex-col items-start">
+			{/* Bouton pour revenir à la page précédente. */}
 			<Link to="/" className="inline-block px-4 py-2 rounded-full text-left text-white mb-4">
-			← Back
+			← Retour
 			</Link>
+			{/* Affichage de l'affiche et des détails du film. */}
 			<div className="flex flex-col md:flex-row md:items-end mb-10">
 				{posterUrl && <img className="rounded-lg shadow-lg object-cover mb-4 md:mb-0" src={posterUrl} alt={movie.title} width="300" />}
 				<div className="text-white p-4 rounded-lg text-left">
 					<h1 className="text-4xl">{movie.title}</h1>
 					<p>{movie.overview}</p>
+					{/* Liste des genres du film. */}
 					{movie.genres && (
 					<p className="italic text-gray-400">
 					{movie.genres.map(genre => genre.name).join(', ')}
 					</p>
 					)}
+					{/* Date de sortie du film. */}
 					<p className="text-gray-300">{new Date(movie.release_date).toLocaleDateString()}</p>
 				</div>
 			</div>
-			<h1 className="text-4xl text-white">Credits</h1>
+			{/* Section pour afficher les crédits du film. */}
+			<h1 className="text-4xl text-white">Crédits</h1>
 			<div className="w-full overflow-x-auto whitespace-nowrap">
 				{credits.cast.map((member) => (
 				<div className="inline-block p-2" key={member.id}>
@@ -84,6 +103,7 @@ const MovieDetail = () => {
 				</div>
 				))}
 			</div>
+			{/* Section pour afficher les images supplémentaires du film. */}
 			<h1 className="text-4xl text-white">Images</h1>
 			<div className="w-full overflow-x-auto whitespace-nowrap">
 				{images && images.backdrops && images.backdrops.map((image, index) => (
@@ -103,4 +123,5 @@ const MovieDetail = () => {
 	);
 };
 
+// Exportation par défaut du composant MovieDetail.
 export default MovieDetail;
