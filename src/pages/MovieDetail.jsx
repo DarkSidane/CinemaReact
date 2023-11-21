@@ -34,7 +34,7 @@ const MovieDetail = () => {
 				const imagesData = await imagesResponse.json();
 				setImages(imagesData);
 			} catch (error) {
-				console.error('Error fetching movie details:', error);
+				console.error('Erreur lors de la requête : ', error);
 			}
 		};
 

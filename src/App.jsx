@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MovieList from './pages/MovieList'; // Assuming MovieList is stored inside the 'pages' folder
-import MovieDetail from './pages/MovieDetail'; // Assuming MovieDetail is stored inside the 'pages' folder
-import './App.css'; // Import the App CSS file for styling
+import MovieList from './pages/MovieList';
+import MovieDetail from './pages/MovieDetail';
+import './App.css'; 
 
 const App = () => {
   return (
