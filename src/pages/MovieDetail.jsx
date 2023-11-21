@@ -68,7 +68,7 @@ const MovieDetail = () => {
                 alt={member.name} 
                 className="mb-2 rounded shadow" 
               />
-              <div>
+              <div className="text-left">
                 <p className="text-white text-lg">{member.name}</p>
                 <p className="text-gray-400 text-sm">{member.character}</p>
               </div>
