@@ -10,7 +10,7 @@ const MovieDetail = () => {
 	useEffect(() => {
 		const fetchMovieDetail = async () => {
 			try {
-				const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=en-US`, {
+				const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=fr-FR`, {
 					headers: {
 						'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTY3OTRlMDU1ZjRiMDA0OWVkYjAwNzYwNmU3YTJiMCIsInN1YiI6IjY1NGE1MDM3MWFjMjkyN2IyZjI3MjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zh5RQtn5g1oHuAfOyZmiNqBgPdAp5MWxY3jYPoJdjqM'
 					}
@@ -92,7 +92,7 @@ const MovieDetail = () => {
 					<img 
 				     src={`https://image.tmdb.org/t/p/original${image.file_path}`} 
 				     alt={`${movie.title} backdrop`} 
-				     className="rounded shadow" 
+				     className="rounded shadow w-[1200px]" 
 				     />
 				</div>
 				)
