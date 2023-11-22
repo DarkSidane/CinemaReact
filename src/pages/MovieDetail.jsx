@@ -3,10 +3,15 @@ import { useParams, Link } from 'react-router-dom';
 
 const MovieDetail = () => {
 	const { movieId } = useParams();
+
+	
 	const [movie, setMovie] = useState(null);
 	const [credits, setCredits] = useState(null);
 	const [images, setImages] = useState(null);
+
+	
 	useEffect(() => {
+		
 		const fetchMovieDetail = async () => {
 			try {
 				const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=fr-FR`, {
