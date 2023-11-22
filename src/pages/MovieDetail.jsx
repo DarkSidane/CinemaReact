@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-
 const MovieDetail = () => {
-	
 	const { movieId } = useParams();
-
-	
 	const [movie, setMovie] = useState(null);
 	const [credits, setCredits] = useState(null);
 	const [images, setImages] = useState(null);
-
-	
 	useEffect(() => {
-		
 		const fetchMovieDetail = async () => {
 			try {
-				
 				const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=fr-FR`, {
 					headers: {
 						'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTY3OTRlMDU1ZjRiMDA0OWVkYjAwNzYwNmU3YTJiMCIsInN1YiI6IjY1NGE1MDM3MWFjMjkyN2IyZjI3MjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zh5RQtn5g1oHuAfOyZmiNqBgPdAp5MWxY3jYPoJdjqM'
@@ -23,8 +15,6 @@ const MovieDetail = () => {
 				});
 				const movieData = await movieResponse.json();
 				setMovie(movieData); 
-
-				
 				const creditsResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
 					headers: {
 						'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTY3OTRlMDU1ZjRiMDA0OWVkYjAwNzYwNmU3YTJiMCIsInN1YiI6IjY1NGE1MDM3MWFjMjkyN2IyZjI3MjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zh5RQtn5g1oHuAfOyZmiNqBgPdAp5MWxY3jYPoJdjqM'
@@ -32,8 +22,6 @@ const MovieDetail = () => {
 				});
 				const creditsData = await creditsResponse.json();
 				setCredits(creditsData); 
-
-				
 				const imagesResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, {
 					headers: {
 						'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTY3OTRlMDU1ZjRiMDA0OWVkYjAwNzYwNmU3YTJiMCIsInN1YiI6IjY1NGE1MDM3MWFjMjkyN2IyZjI3MjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zh5RQtn5g1oHuAfOyZmiNqBgPdAp5MWxY3jYPoJdjqM'
@@ -46,19 +34,13 @@ const MovieDetail = () => {
 				console.error('Erreur lors de la requête : ', error);
 			}
 		};
-
 		fetchMovieDetail(); 
 	}, [movieId]); 
-
-	
 	if (!movie || !credits) {
 		return <div className="flex justify-center items-center h-screen">Chargement...</div>;
 	}
-
-	
 	const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : '';
 	const backUrl = movie.backdrop_path ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}` : '';
-
 	return (
 	<div className={`min-h-screen bg-no-repeat bg-cover bg-center`} style={{ backgroundImage: `url(${backUrl})`, backgroundAttachment: 'fixed' }}>
 		<div className="absolute top-0 right-0 bottom-0 left-0 bg-black/30 backdrop-blur-xl"></div>
@@ -113,5 +95,4 @@ const MovieDetail = () => {
 	</div>
 	);
 };
-
 export default MovieDetail;
