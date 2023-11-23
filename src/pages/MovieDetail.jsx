@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import options_API from '../config';
+import imageDefault from '/imageDefault.png';
 
 const token_API = import.meta.env.VITE_TOKEN_API;
 
@@ -72,7 +73,7 @@ const MovieDetail = () => {
 				{credits.cast.map((member) => (
 				<div className="inline-block p-2" key={member.id}>
 					<img 
-				     src={`https://image.tmdb.org/t/p/w200${member.profile_path}`} 
+				    src={member.profile_path ? `https://image.tmdb.org/t/p/w200${member.profile_path}` : imageDefault}
 				     alt={member.name} 
 				     className="mb-2 rounded shadow" 
 				     />
