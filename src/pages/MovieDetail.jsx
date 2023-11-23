@@ -49,7 +49,7 @@ const MovieDetail = () => {
     const backUrl = movie?.backdrop_path ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}` : '';
 
 	return (
-	<div className={`min-h-screen bg-no-repeat bg-cover bg-center`} style={{ backgroundImage: `url(${backUrl})`, backgroundAttachment: 'fixed' }}>
+	<div className={`min-h-screen bg-no-repeat bg-cover bg-center backdrop-blur-xl`} style={{ backgroundImage: `url(${backUrl})`, backgroundAttachment: 'fixed' }}>
 		<div className="absolute top-0 right-0 bottom-0 left-0 bg-black/30 backdrop-blur-xl"></div>
 		<div className="relative p-4 flex flex-col items-start">
 			<Link to="/" className="inline-block px-4 py-2 rounded-full text-left text-white mb-4">
