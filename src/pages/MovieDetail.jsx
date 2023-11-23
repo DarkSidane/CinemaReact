@@ -1,13 +1,12 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
+import options_API from '../config';
+
+const token_API = import.meta.env.VITE_TOKEN_API;
 
 const fetchMovieDetail = async (movieId) => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=fr-FR`, {
-        headers: {
-						'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTY3OTRlMDU1ZjRiMDA0OWVkYjAwNzYwNmU3YTJiMCIsInN1YiI6IjY1NGE1MDM3MWFjMjkyN2IyZjI3MjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zh5RQtn5g1oHuAfOyZmiNqBgPdAp5MWxY3jYPoJdjqM'
-        }
-    });
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}?language=fr-FR`,options_API);
     if (!response.ok) {
         throw new Error('Erreur réseau');
     }
@@ -15,11 +14,7 @@ const fetchMovieDetail = async (movieId) => {
 };
 
 const fetchCredits = async (movieId) => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
-        headers: {
-						'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTY3OTRlMDU1ZjRiMDA0OWVkYjAwNzYwNmU3YTJiMCIsInN1YiI6IjY1NGE1MDM3MWFjMjkyN2IyZjI3MjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zh5RQtn5g1oHuAfOyZmiNqBgPdAp5MWxY3jYPoJdjqM'
-        }
-    });
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/credits`, options_API);
     if (!response.ok) {
         throw new Error('Erreur réseau');
     }
@@ -27,11 +22,7 @@ const fetchCredits = async (movieId) => {
 };
 
 const fetchImages = async (movieId) => {
-    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, {
-        headers: {
-						'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTY3OTRlMDU1ZjRiMDA0OWVkYjAwNzYwNmU3YTJiMCIsInN1YiI6IjY1NGE1MDM3MWFjMjkyN2IyZjI3MjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zh5RQtn5g1oHuAfOyZmiNqBgPdAp5MWxY3jYPoJdjqM'
-        }
-    });
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, options_API);
     if (!response.ok) {
         throw new Error('Erreur réseau');
     }

@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import MovieGrid from '../components/MovieGrid';
+import options_API from '../config';
 
 const fetchMovies = async (searchTerm) => {
     const url = searchTerm
         ? `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(searchTerm)}`
         : 'https://api.themoviedb.org/3/movie/now_playing';
     
-    const response = await fetch(url, {
-        headers: {
-	    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTY3OTRlMDU1ZjRiMDA0OWVkYjAwNzYwNmU3YTJiMCIsInN1YiI6IjY1NGE1MDM3MWFjMjkyN2IyZjI3MjgxZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Zh5RQtn5g1oHuAfOyZmiNqBgPdAp5MWxY3jYPoJdjqM'
-        }
-    });
+    const response = await fetch(url, options_API);
 
     if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('Erreur réseau')
     }
 
     return response.json();
